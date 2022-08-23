@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12 text-center">
-                        <a href="#" class="logo" style="text-align: center"><span>H</span>ebtna</a>
+                        <a href="{{ URL('index') }}" class="logo" style="text-align: center"><span>H</span>ebtna</a>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <ul class="nav nav-pills nav-top navbar-right">
@@ -157,11 +157,11 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Home  <span class="sr-only">(current)</span></a></li>
-                        <li><a href="about.html">about</a></li>
-                        <li><a href="designers.html">designers</a></li>
-                        <li><a href="products.html">products</a></li>
-                        <li><a href="contact.html">cotact us </a></li>
+                        <li class="@if (\Request::url() == URL('index')) active @endif"><a href="{{ URL('index') }}">Home  <span class="sr-only">(current)</span></a></li>
+                        <li class=" @if (\Request::url() == URL('about')) active @endif"><a href="{{ URL('about') }}">about</a></li>
+                        {{-- <li><a href="designers.html">designers</a></li> --}}
+                        <li class=" @if (\Request::url() == URL('products')) active @endif"><a href="{{ URL('products') }}">products</a></li>
+                        <li class=" @if (\Request::url() == URL('contact')) active @endif"><a href="{{ URL('contact') }}">cotact us </a></li>
 
                     </ul>
 

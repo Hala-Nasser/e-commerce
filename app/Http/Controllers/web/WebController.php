@@ -11,14 +11,27 @@ class WebController extends Controller
     //
     public function index()
     {
-        return view('web.index');
+        $pages = Page::all();
+//        dd($pages[5]->with('pageItems')->find(6));
+//        dd($pages[5]->with('pageItems')->find(6)->pageItems[1]);
+        return view('web.index')->with('pages', $pages);
     }
 
-    public function about(){
+    public function about()
+    {
         $about = Page::where('id', 1)->with('pageItems')->first();
-        //dd($about->pageItems[0]->title_en);
         return view('web.about')->with('about', $about);
     }
 
-    
+    public function products()
+    {
+        return view('web.products');
+    }
+
+    public function contact()
+    {
+        return view('web.contact');
+    }
+
+
 }
