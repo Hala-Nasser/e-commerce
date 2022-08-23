@@ -17,11 +17,11 @@
         </div>
         <div class="page-links">
             <ul>
-                <li><a href="index.html">home</a></li>
-                <li><a href="about.html">about</a></li>
-                <li><a href="designers.html">designers</a></li>
-                <li><a href="products.html">products</a></li>
-                <li><a href="contact.html">cotact us </a></li>
+                <li><a href="{{ URL('index') }}">home</a></li>
+                <li><a href="{{ URL('about') }}">about</a></li>
+                {{-- <li><a href="designers.html">designers</a></li> --}}
+                <li><a href="{{ URL('products') }}">products</a></li>
+                <li><a href="{{ URL('contact') }}">contact us </a></li>
             </ul>
         </div>
     </div>

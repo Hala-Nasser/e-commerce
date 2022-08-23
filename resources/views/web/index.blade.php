@@ -21,9 +21,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="slider-text">
-                                        <h3> Lorem ipsum dolor sit amet </h3>
-                                        <p>Consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                                            Cum sociis natoque penatibus et magnis dis parturient monte</p>
+                                        <h3> {{$pages[2]->title}}</h3>
+                                        <p>{{$pages[2]->description}}</p>
                                         <ul>
                                             <li>
                                                 <a href="#" class="btn btn-default order"> ORDER </a>
@@ -42,9 +41,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="slider-text">
-                                        <h3> Lorem ipsum dolor sit amet </h3>
-                                        <p>Consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                                            Cum sociis natoque penatibus et magnis dis parturient monte</p>
+                                        <h3> {{$pages[3]->title}}</h3>
+                                        <p>{{$pages[3]->description}}</p>
                                         <ul>
                                             <li>
                                                 <a href="#" class="btn btn-default order"> ORDER </a>
@@ -64,9 +62,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="slider-text">
-                                        <h3> Lorem ipsum dolor sit amet </h3>
-                                        <p>Consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                                            Cum sociis natoque penatibus et magnis dis parturient monte</p>
+                                        <h3> {{$pages[4]->title}}</h3>
+                                        <p>{{$pages[4]->description}}</p>
                                         <ul>
                                             <li>
                                                 <a href="#" class="btn btn-default order"> ORDER </a>
@@ -99,42 +96,71 @@
         <div class="row">
             <div class="col-md-6 col-sm-5 col-xs-12 wow fadeInUp">
                 <div class="section-title">
-                    <h3> OUR FEATURES </h3>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lacinia enim eu velit
-                        condimentum auctor. Nullam mi dui, tincidunt et sapien quis, consectetur rutrum ante.</p>
+                    <h3>{{$pages[5]->with('pageItems')->find(6)->title}}</h3>
+                    <p>{{$pages[5]->with('pageItems')->find(6)->description}}</p>
 
                 </div>
             </div>
             <div class="col-md-5 col-sm-7 col-md-offset-1 col-xs-12 wow fadeInUp ">
                 <div class="features-icon">
-                    <img class="devider hidden-xs " src="img/featuresDevider.png">
+                    <img class="devider hidden-xs " src="{{asset('web/img/featuresDevider.png')}}">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="featureContent">
-                                <img src="img/f1.png">
-                                <h4> 24 Hr SUPPORT </h4>
+                                @if($pages[5]->with('pageItems')->find(6)->pageItems[0] == null)
+                                    <img src="{{asset('web/img/f1.png')}}">
+                                @else
+                                    @if($pages[5]->with('pageItems')->find(6)->pageItems[0]->image == null)
+                                        <img src="{{asset('web/img/f1.png')}}">
+                                    @else
+                                        <img src="{{ $pages[5]->with('pageItems')->find(6)->pageItems[0]->image->getUrl()}}">
+                                    @endif
+                                @endif
+                                <h4> {{$pages[5]->with('pageItems')->find(6)->pageItems[0]->title}} </h4>
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="featureContent">
-                                <img src="img/currency--1-.png">
-                                <h4> MONEY BACK </h4>
+                                @if($pages[5]->with('pageItems')->find(6)->pageItems[1] == null)
+                                    <img src="{{asset('web/img/currency--1-.png')}}">
+                                @else
+                                    @if($pages[5]->with('pageItems')->find(6)->pageItems[1]->image == null)
+                                        <img src="{{asset('web/img/currency--1-.png')}}">
+                                    @else
+                                    <img src="{{ $pages[5]->with('pageItems')->find(6)->pageItems[1]->image->getUrl()}}">
+                                    @endif
+                                @endif
+                                <h4> {{$pages[5]->with('pageItems')->find(6)->pageItems[1]->title}} </h4>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
                             <div class="featureContent">
-                                <img src="img/gift.png">
-                                <h4> SURPRICE GIFT </h4>
+                                @if($pages[5]->with('pageItems')->find(6)->pageItems[2] == null)
+                                    <img src="{{asset('web/img/gift.png')}}">
+                                @else
+                                    @if($pages[5]->with('pageItems')->find(6)->pageItems[2]->image == null)
+                                        <img src="{{asset('web/img/gift.png')}}">
+                                    @else
+                                        <img src="{{ $pages[5]->with('pageItems')->find(6)->pageItems[2]->image->getUrl()}}">
+                                    @endif
+                                @endif
+                                <h4> {{$pages[5]->with('pageItems')->find(6)->pageItems[2]->title}} </h4>
                             </div>
-
-
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="featureContent">
-                                <img src="img/checked.png">
-                                <h4> UNIQUE DESIGN </h4>
+                                @if($pages[5]->with('pageItems')->find(6)->pageItems[3] == null)
+                                    <img src="{{asset('web/img/checked.png')}}">
+                                @else
+                                    @if($pages[5]->with('pageItems')->find(6)->pageItems[3]->image == null)
+                                        <img src="{{asset('web/img/checked.png')}}">
+                                    @else
+                                        <img src="{{ $pages[5]->with('pageItems')->find(6)->pageItems[3]->image->getUrl()}}">
+                                    @endif
+                                @endif
+                                <h4> {{$pages[5]->with('pageItems')->find(6)->pageItems[3]->title}} </h4>
                             </div>
 
 
@@ -151,8 +177,9 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 wow fadeInUp">
                 <div class="section-title">
-                    <h3> PRODUCTS </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean </p>
+                    <h3> {{$pages[1]->title}}</h3>
+{{--                    <p>{!! $pages[1]->description !!}</p>--}}
+                    <p>{{ $pages[1]->description }}</p>
                 </div>
             </div>
 
@@ -231,7 +258,7 @@
                                 <p> Aenean commodo ligula eget dolor </p>
                                 <div class="shipping-icon">
                                     <a href="#">
-                                        <img src="img/shopping-cart%20(1).png">
+                                        <img src="{{asset('web/img/shopping-cart%20(1).png')}}">
                                     </a>
                                 </div>
                             </div>
@@ -256,7 +283,7 @@
                                 <p> Aenean commodo ligula eget dolor </p>
                                 <div class="shipping-icon">
                                     <a href="#">
-                                        <img src="img/shopping-cart%20(1).png">
+                                        <img src="{{asset('web/img/shopping-cart%20(1).png')}}">
                                     </a>
                                 </div>
                             </div>
@@ -285,7 +312,7 @@
                                 <p> Aenean commodo ligula eget dolor </p>
                                 <div class="shipping-icon">
                                     <a href="#">
-                                        <img src="img/shopping-cart%20(1).png">
+                                        <img src="{{asset('web/img/shopping-cart%20(1).png')}}">
                                     </a>
                                 </div>
                             </div>
@@ -310,7 +337,7 @@
                                 <p> Aenean commodo ligula eget dolor </p>
                                 <div class="shipping-icon">
                                     <a href="#">
-                                        <img src="img/shopping-cart%20(1).png">
+                                        <img src="{{asset('web/img/shopping-cart%20(1).png')}}">
                                     </a>
                                 </div>
                             </div>
@@ -332,10 +359,19 @@
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 wow fadeInUp" data-wow-duration="2s" data-wow-delay=".3s">
                 <div class="section-title arrivedText">
-                    <h3> JUST ARRIVED ! </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean </p>
+                    <h3> {{$pages[6]->title}}</h3>
+                    <p>{{ $pages[6]->description }}</p>
                 </div>
-                <img src="img/arrived/arrivedNum.png" alt="arrived " title="just arrived" class="img-responsive">
+                @if($pages[6] == null)
+                    <img src="{{asset('web/img/arrived/arrivedNum.png')}}" alt="arrived " title="just arrived" class="img-responsive">
+                @else
+                    @if($pages[6]->image == null)
+                        <img src="{{asset('web/img/arrived/arrivedNum.png')}}" alt="arrived " title="just arrived" class="img-responsive">
+                    @else
+                        <img src="{{ $pages[6]->image->getUrl() }}" class="img-responsive">
+                    @endif
+                @endif
+
             </div>
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                 <div class="space-100 hidden-xs"></div>
@@ -355,7 +391,7 @@
                             <a href="#" class="btn btn-primary"> ORDER </a>
                         </div>
                         <div class="col-md-5  col-sm-6 right-side hidden-xs ">
-                            <img src="img/arrived/arrivedImg.png">
+                            <img src="{{asset('web/img/arrived/arrivedImg.png')}}">
                         </div>
                     </div>
                 </div>
@@ -367,8 +403,8 @@
 <div class="suggested">
     <div class="container">
         <div class="section-title wow fadeInUp">
-            <h3>SUGGESTED </h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean </p>
+            <h3> {{$pages[7]->title}}</h3>
+            <p>{{ $pages[7]->description }}</p>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -385,29 +421,29 @@
                         <div class="item active">
                             <div class="row">
                                 <div class="col-md-4"><a href="#" class="img-responsive"><img
-                                            src="img/suggest/suggest1.png" alt="Image"></a></div>
+                                            src="{{asset('web/img/suggest/suggest1.png')}}" alt="Image"></a></div>
                                 <div class="col-md-4"><a href="#" class="img-responsive"><img
-                                            src="img/suggest/suggest2.png" alt="Image"></a></div>
+                                            src="{{asset('web/img/suggest/suggest2.png')}}" alt="Image"></a></div>
                                 <div class="col-md-4"><a href="#" class="img-responsive"><img
-                                            src="img/suggest/suggest3.png" alt="Image"></a></div>
+                                            src="{{asset('web/img/suggest/suggest3.png')}}" alt="Image"></a></div>
                             </div>
                             <!--.row-->
                         </div>
                         <!--.item-->
                         <div class="item">
-                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="img/suggest/suggest1.png"
+                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="{{asset('web/img/suggest/suggest1.png')}}"
                                         alt="Image"></a></div>
-                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="img/suggest/suggest2.png"
+                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="{{asset('web/img/suggest/suggest2.png')}}"
                                         alt="Image"></a></div>
-                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="img/suggest/suggest3.png"
+                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="{{asset('web/img/suggest/suggest3.png')}}"
                                         alt="Image"></a></div>
                         </div>
                         <div class="item">
-                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="img/suggest/suggest1.png"
+                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="{{asset('web/img/suggest/suggest1.png')}}"
                                         alt="Image"></a></div>
-                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="img/suggest/suggest2.png"
+                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="{{asset('web/img/suggest/suggest2.png')}}"
                                         alt="Image"></a></div>
-                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="img/suggest/suggest3.png"
+                            <div class="col-md-4"><a href="#" class="img-responsive"><img src="{{asset('web/img/suggest/suggest3.png')}}"
                                         alt="Image"></a></div>
                         </div>
 
