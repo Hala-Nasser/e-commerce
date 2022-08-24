@@ -10,7 +10,7 @@
     <div class="page-title text-center">
         <ol class="breadcrumb">
             <li><a href="#">Add Product   </a></li>
-            <li><a href="#">home </a></li>
+            <li><a href="{{ URL('index') }}">home </a></li>
         </ol>
     </div>
     <div class="clearfix"></div>

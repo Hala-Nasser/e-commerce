@@ -43,4 +43,12 @@ class AttributeValue extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function getValueAttribute(){
+        if(\App::getLocale() == 'en'){
+            return $this->value_en;
+        }else{
+            return $this->value_ar;
+        }
+    }
 }

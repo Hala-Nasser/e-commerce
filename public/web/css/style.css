@@ -1128,14 +1128,14 @@ p.loginDesc{
     font-family: "DinnMedium";
 
 }
-.contact{
-    background: url("../img/contactBg.png")no-repeat;
-    background-size: cover;
-    -moz-background-size: cover;
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    padding: 30px 0;
-}
+/*.contact{*/
+/*    background: url("../img/contactBg.png")no-repeat;*/
+/*    background-size: cover;*/
+/*    -moz-background-size: cover;*/
+/*    -ms-background-size: cover;*/
+/*    -o-background-size: cover;*/
+/*    padding: 30px 0;*/
+/*}*/
 .contact form{
 
 }.red{

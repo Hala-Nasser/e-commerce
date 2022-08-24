@@ -161,7 +161,7 @@
                         <li class=" @if (\Request::url() == URL('about')) active @endif"><a href="{{ URL('about') }}">about</a></li>
                         {{-- <li><a href="designers.html">designers</a></li> --}}
                         <li class=" @if (\Request::url() == URL('products')) active @endif"><a href="{{ URL('products') }}">products</a></li>
-                        <li class=" @if (\Request::url() == URL('contact')) active @endif"><a href="{{ URL('contact') }}">cotact us </a></li>
+                        <li class=" @if (\Request::url() == URL('contact')) active @endif"><a href="{{ URL('contact') }}">contact us </a></li>
 
                     </ul>
 
@@ -169,4 +169,3 @@
             </div><!-- /.container-fluid -->
         </nav>
     </header>
-    
