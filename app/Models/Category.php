@@ -78,4 +78,28 @@ class Category extends Model implements HasMedia
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function getTitleAttribute(){
+        if(\App::getLocale() == 'en'){
+            return $this->title_en;
+        }else{
+            return $this->title_ar;
+        }
+    }
+    public function getKeywordsAttribute(){
+        if(\App::getLocale() == 'en'){
+            return $this->keywords_en;
+        }else{
+            return $this->keywords_ar;
+        }
+    }
+
+
+    public function getDescriptionAttribute(){
+        if(\App::getLocale() == 'en'){
+            return $this->description_en;
+        }else{
+            return $this->description_ar;
+        }
+    }
 }

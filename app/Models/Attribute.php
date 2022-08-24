@@ -37,4 +37,13 @@ class Attribute extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function getTitleAttribute(){
+        if(\App::getLocale() == 'en'){
+            return $this->title_en;
+        }else{
+            return $this->title_ar;
+        }
+    }
+
 }

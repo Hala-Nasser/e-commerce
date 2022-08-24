@@ -195,13 +195,45 @@
                                     <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title"
                                         class="dropdown_title">All Product </span><span class="caret"></span></a>
                                 <ul ID="divNewNotifications" class="dropdown-menu">
-                                    <li><a>One</a></li>
-                                    <li><a>Two</a></li>
-                                    <li><a>Three</a></li>
+                                    @forelse($categories as $category)
+                                        <li><a>{{$category->title}}</a></li>
+                                    @empty
+                                        <li><a>One</a></li>
+                                        <li><a>Two</a></li>
+                                        <li><a>Three</a></li>
+                                    @endforelse
                                 </ul>
                             </li>
                         </ul>
                     </div>
+                    @forelse($attributes as $attribute)
+                        <div class="col-md-3 col-sm-3">
+                            <ul class="nav nav-pills left">
+                                <li class="dropdown active span8">
+                                    <a class="dropdown-toggle" id="inp_impact2" data-toggle="dropdown">
+                                        <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title2"
+                                                                                                 class="dropdown_title">{{$attribute->title}}</span><span class="caret"></span></a>
+                                    <ul ID="divNewNotifications2" class="dropdown-menu sizes">
+                                        @forelse($attribute->attributeAttributeValues as $attribute_value)
+                                            @if($attribute->title_en == "color")
+                                                <li><a> {{$attribute_value->value}} <label class="color1"> </label></a></li>
+                                            @else
+                                            <li><a><span class="small "> {{$attribute_value->value}} </span> Small </a></li>
+                                            @endif
+                                        @empty
+                                        <li><a><span class="small "> S </span> Small </a></li>
+                                        <li><a><span class="medium "> M </span> Medium </a></li>
+                                        <li><a><span class="large "> L </span> Large </a></li>
+                                        <li><a><span class="xlarge "> XL </span> XLarge </a></li>
+                                        <li><a><span class="xxlarge "> XXL </span> XXLarge </a></li>
+                                        <li><a><span class="xxxlarge "> XXXL </span> XXXLarge </a></li>
+                                        @endforelse
+
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    @empty
                     <div class="col-md-3 col-sm-3">
                         <ul class="nav nav-pills left">
                             <li class="dropdown active span8">
@@ -215,29 +247,29 @@
                                     <li><a><span class="xlarge "> XL </span> XLarge </a></li>
                                     <li><a><span class="xxlarge "> XXL </span> XXLarge </a></li>
                                     <li><a><span class="xxxlarge "> XXXL </span> XXXLarge </a></li>
-
                                 </ul>
                             </li>
                         </ul>
                     </div>
+                    @endforelse
 
-                    <div class="col-md-3 col-sm-3">
-                        <ul class="nav nav-pills left">
-                            <li class="dropdown active span8">
-                                <a class="dropdown-toggle" id="inp_impact3" data-toggle="dropdown">
-                                    <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title3"
-                                        class="dropdown_title">Colors </span><span class="caret"></span></a>
-                                <ul ID="divNewNotifications3" class="dropdown-menu colors">
-                                    <li><a> Red <label class="color1"> </label></a></li>
-                                    <li><a> Red <label class="color2"> </label></a></li>
-                                    <li><a> Red <label class="color3"> </label></a></li>
-                                    <li><a> Red <label class="color4"> </label></a></li>
-                                    <li><a> Red <label class="color5"> </label></a></li>
+{{--                    <div class="col-md-3 col-sm-3">--}}
+{{--                        <ul class="nav nav-pills left">--}}
+{{--                            <li class="dropdown active span8">--}}
+{{--                                <a class="dropdown-toggle" id="inp_impact3" data-toggle="dropdown">--}}
+{{--                                    <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title3"--}}
+{{--                                        class="dropdown_title">Colors </span><span class="caret"></span></a>--}}
+{{--                                <ul ID="divNewNotifications3" class="dropdown-menu colors">--}}
+{{--                                    <li><a> Red <label class="color1"> </label></a></li>--}}
+{{--                                    <li><a> Red <label class="color2"> </label></a></li>--}}
+{{--                                    <li><a> Red <label class="color3"> </label></a></li>--}}
+{{--                                    <li><a> Red <label class="color4"> </label></a></li>--}}
+{{--                                    <li><a> Red <label class="color5"> </label></a></li>--}}
 
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                        </ul>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

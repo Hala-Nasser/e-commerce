@@ -8,7 +8,7 @@
     <div class="page-title text-center">
         <ol class="breadcrumb">
             <li><a href="#">Shopping Card  </a></li>
-            <li><a href="#">home </a></li>
+            <li><a href="{{ URL('index') }}">home </a></li>
         </ol>
     </div>
     <div class="clearfix"></div>
@@ -329,44 +329,44 @@
                 }
             });
         });
-    
+
     </script>
     <script>$(document).ready(function () {
         //Initialize tooltips
         $('.nav-tabs > li a[title]').tooltip();
-    
+
         //Wizard
         $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-    
+
             var $target = $(e.target);
-    
+
             if ($target.parent().hasClass('disabled')) {
                 return false;
             }
         });
-    
+
         $(".next-step").click(function (e) {
-    
+
             var $active = $('.wizard .nav-tabs li.active');
             $active.next().removeClass('disabled');
             nextTab($active);
-    
+
         });
         $(".prev-step").click(function (e) {
-    
+
             var $active = $('.wizard .nav-tabs li.active');
             prevTab($active);
-    
+
         });
     });
-    
+
     function nextTab(elem) {
         $(elem).next().find('a[data-toggle="tab"]').click();
     }
     function prevTab(elem) {
         $(elem).prev().find('a[data-toggle="tab"]').click();
     }
-    
+
     </script>
     <script>
         jQuery('<div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>').insertAfter('.quantity input');
@@ -377,7 +377,7 @@
                 btnDown = spinner.find('.quantity-down'),
                 min = input.attr('min'),
                 max = input.attr('max');
-    
+
             btnUp.click(function() {
                 var oldValue = parseFloat(input.val());
                 if (oldValue >= max) {
@@ -388,7 +388,7 @@
                 spinner.find("input").val(newVal);
                 spinner.find("input").trigger("change");
             });
-    
+
             btnDown.click(function() {
                 var oldValue = parseFloat(input.val());
                 if (oldValue <= min) {
@@ -399,8 +399,8 @@
                 spinner.find("input").val(newVal);
                 spinner.find("input").trigger("change");
             });
-    
+
         });
     </script>
-    
+
     @endsection
