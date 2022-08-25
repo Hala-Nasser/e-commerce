@@ -19,7 +19,7 @@ class InventoryController extends Controller
     {
         abort_if(Gate::denies('inventory_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $inventories = Inventory::with(['product', 'attribute_value'])->get();
+        $inventories = Inventory::with(['product', 'attribute_values'])->get();
 
         return view('admin.inventories.index', compact('inventories'));
     }
@@ -30,7 +30,7 @@ class InventoryController extends Controller
 
         $products = Product::pluck('title_en', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $attribute_values = AttributeValue::pluck('value_en', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $attribute_values = AttributeValue::pluck('value_en', 'id');
 
         return view('admin.inventories.create', compact('attribute_values', 'products'));
     }
@@ -38,6 +38,7 @@ class InventoryController extends Controller
     public function store(StoreInventoryRequest $request)
     {
         $inventory = Inventory::create($request->all());
+        $inventory->attribute_values()->sync($request->input('attribute_values', []));
 
         return redirect()->route('admin.inventories.index');
     }
@@ -48,9 +49,9 @@ class InventoryController extends Controller
 
         $products = Product::pluck('title_en', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $attribute_values = AttributeValue::pluck('value_en', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $attribute_values = AttributeValue::pluck('value_en', 'id');
 
-        $inventory->load('product', 'attribute_value');
+        $inventory->load('product', 'attribute_values');
 
         return view('admin.inventories.edit', compact('attribute_values', 'inventory', 'products'));
     }
@@ -58,6 +59,7 @@ class InventoryController extends Controller
     public function update(UpdateInventoryRequest $request, Inventory $inventory)
     {
         $inventory->update($request->all());
+        $inventory->attribute_values()->sync($request->input('attribute_values', []));
 
         return redirect()->route('admin.inventories.index');
     }
@@ -66,7 +68,7 @@ class InventoryController extends Controller
     {
         abort_if(Gate::denies('inventory_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $inventory->load('product', 'attribute_value', 'invintoryOrderDetails');
+        $inventory->load('product', 'attribute_values', 'invintoryOrderDetails');
 
         return view('admin.inventories.show', compact('inventory'));
     }

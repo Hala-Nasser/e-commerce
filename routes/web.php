@@ -140,6 +140,7 @@ Route::get('products', 'web\WebController@products');
 Route::get('product/singleProduct/{id}', 'web\WebController@indexsingleproduct');
 
 // Route::get('shopping', 'web\WebController@products');
+Route::get('cart', 'web\WebController@cart');
 
 Route::get('contact', 'web\WebController@contact');
 Route::post('contact/store', 'web\WebController@contactUsStore');

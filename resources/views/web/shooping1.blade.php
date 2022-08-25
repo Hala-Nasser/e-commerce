@@ -7,7 +7,7 @@
 
     <div class="page-title text-center">
         <ol class="breadcrumb">
-            <li><a href="#">Shopping Card  </a></li>
+            <li><a href="#">Shopping Cart  </a></li>
             <li><a href="{{ URL('index') }}">home </a></li>
         </ol>
     </div>
@@ -56,6 +56,8 @@
                         <div class="tab-content">
                             <div class="tab-pane active" role="tabpanel" id="step1">
                                 <div class="row">
+
+
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="cart-content">
                                             <div class="row">
@@ -87,6 +89,9 @@
                                         </div>
 
                                     </div>
+
+
+
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="cart-content">
                                             <div class="row">

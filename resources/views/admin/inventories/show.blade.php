@@ -68,7 +68,9 @@
                             {{ trans('cruds.inventory.fields.attribute_value') }}
                         </th>
                         <td>
-                            {{ $inventory->attribute_value->value_en ?? '' }}
+                            @foreach($inventory->attribute_values as $key => $attribute_value)
+                                <span class="label label-info">{{ $attribute_value->value_en }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

@@ -26,7 +26,6 @@ class Inventory extends Model
         'discount_percentage',
         'weight',
         'product_id',
-        'attribute_value_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -42,9 +41,9 @@ class Inventory extends Model
         return $this->belongsTo(Product::class, 'product_id');
     }
 
-    public function attribute_value()
+    public function attribute_values()
     {
-        return $this->belongsTo(AttributeValue::class, 'attribute_value_id');
+        return $this->belongsToMany(AttributeValue::class);
     }
 
     protected function serializeDate(DateTimeInterface $date)
