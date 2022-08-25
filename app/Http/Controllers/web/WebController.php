@@ -23,6 +23,8 @@ class WebController extends Controller
         $products = Product::orderBy('created_at', 'ASC')->take(4)->get();;
         $attributes = Attribute::with('attributeAttributeValues')->get();
         $latestproducts = Product::orderBy('created_at', 'ASC')->take(9)->get();
+        $suggproduct = Product::orderBy('created_at', 'ASC')->take(3)->get();
+
         if($request->has('product_id')){
             $products = Product::where('id' ,'=' , $request->input('product_id'))->get();
             return response()->view('web.singleProduct', ['products' => $products , 'users'=> $users]);
@@ -33,7 +35,8 @@ class WebController extends Controller
         'categories'=> $categories ,
         'pages'=> $pages ,
         'attributes'=> $attributes,
-        'latestproducts' => $latestproducts
+        'latestproducts' => $latestproducts,
+        'suggproduct' => $suggproduct
         ]);
 
 

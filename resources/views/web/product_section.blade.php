@@ -108,9 +108,6 @@
 
                     </div>
                 </div>
-               
-
-
             </div>
             @empty
             <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 wow fadeInUp" >
@@ -127,7 +124,7 @@
                                 <p> Aenean commodo ligula eget dolor  </p>
                                 <div class="shipping-icon">
                                     <a href="#">
-                                        <img src="img/shopping-cart%20(1).png">
+                                        <img src="{{asset('web/img/shopping-cart%20(1).png')}}">
                                     </a>
                                 </div>
                             </div>
