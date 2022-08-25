@@ -115,6 +115,9 @@
                             $('#subjectErrorMsg').text(response.responseJSON.errors.subject);
                             $('#messageErrorMsg').text(response.responseJSON.errors.message);
                         },
+                        failure: function(errMsg) {
+                            console.log(errMsg);
+                        }
                     });
                 });
             </script>

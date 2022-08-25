@@ -247,7 +247,7 @@ a.logo span{
 	margin-bottom: 27px;
 }
 .products .section-title p{
-	padding-bottom: 59px;
+	padding-bottom: 30px;
 }
 .products h4.sort{
 	color: #686868;
@@ -2325,7 +2325,7 @@ a.size4{
 }
 
 .dropdown-menu.sizes li a,.dropdown-menu.colors li a {
-	text-align-last: justify;
+	text-align-last: center;
 	font-family: "Ebrima";
 	font-size: 16px;
 

@@ -18,6 +18,7 @@ class WebController extends Controller
     {
         $pages = Page::all();
         $categories = Category::all();
+
         $users= User::all();
         $products = Product::orderBy('created_at', 'ASC')->take(4)->get();;
         $attributes = Attribute::with('attributeAttributeValues')->get();
@@ -54,9 +55,17 @@ class WebController extends Controller
         return view('web.about')->with('about', $about);
     }
 
-    public function products()
+    public function products(Request $request)
     {
-        return view('web.products');
+        $product_page = Page::find(2);
+        $categories = Category::all();
+        $attributes = Attribute::with('attributeAttributeValues')->get();
+
+        if ($request->ajax()){
+//            dd($request->date);
+            return response()->json(['success' => $request->date]);
+        }
+        return view('web.products')->with('product_page', $product_page)->with('categories', $categories)->with('attributes', $attributes);
     }
 
     public function contact()
