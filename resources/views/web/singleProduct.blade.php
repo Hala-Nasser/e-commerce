@@ -8,7 +8,9 @@
 
     <div class="page-title text-center">
         <ol class="breadcrumb">
-            <li><a href="#">Products </a></li>
+            {{-- <li class="@if (\Request::url() == URL('index')) active @endif"><a href="{{ URL('index') }}">Home  <span class="sr-only">(current)</span></a></li> --}}
+
+            <li><a href="{{ URL('products') }}">Products </a></li>
             <li><a href="{{ URL('index') }}">home </a></li>
         </ol>
     </div>
