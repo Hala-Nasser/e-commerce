@@ -16,13 +16,7 @@ class WebController extends Controller
     {
         $pages = Page::all();
         $categories = Category::all();
-//        $attributes = Attribute::all();
-//        foreach ($attributes as $attribute){
-//            $attribute->attribute_value = $attribute->with('attributeAttributeValues');
-//            dd($attribute->attribute_value->value_en);
-//    }
         $attributes = Attribute::with('attributeAttributeValues')->get();
-//        dd($attributes[0]->attributeAttributeValues[0]->value_en);
         return view('web.index')->with('pages', $pages)->with('categories', $categories)->with('attributes', $attributes);
     }
 
@@ -32,9 +26,17 @@ class WebController extends Controller
         return view('web.about')->with('about', $about);
     }
 
-    public function products()
+    public function products(Request $request)
     {
-        return view('web.products');
+        $product_page = Page::find(2);
+        $categories = Category::all();
+        $attributes = Attribute::with('attributeAttributeValues')->get();
+
+        if ($request->ajax()){
+//            dd($request->date);
+            return response()->json(['success' => $request->date]);
+        }
+        return view('web.products')->with('product_page', $product_page)->with('categories', $categories)->with('attributes', $attributes);
     }
 
     public function contact()

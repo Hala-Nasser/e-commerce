@@ -17,8 +17,8 @@
         </div>
         <div class="page-links">
             <ul>
-                <li><a href="{{ URL('index') }}">home</a></li>
-                <li><a href="{{ URL('about') }}">about</a></li>
+{{--                <li><a href="{{ URL('index') }}">home</a></li>--}}
+{{--                <li><a href="{{ URL('about') }}">about</a></li>--}}
                 {{-- <li><a href="designers.html">designers</a></li> --}}
                 <li><a href="{{ URL('products') }}">products</a></li>
                 <li><a href="{{ URL('contact') }}">contact us </a></li>
@@ -27,14 +27,14 @@
     </div>
 </div>
 </div>
-<script type="text/javascript" src="{{asset('web/js/jquery-3.2.1.min.js')}}"></script>
+{{--<script type="text/javascript" src="{{asset('web/js/jquery-3.2.1.min.js')}}"></script>--}}
 <script type="text/javascript" src="{{asset('web/js/loginModal.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('web/js/bootstrap.js')}}"></script>
 
 <script type="text/javascript" src="{{asset('web/js/owl.carousel.js')}}"></script>
 <script type="text/javascript" src="{{asset('web/js/wow.js')}}"></script>
-<script type="text/javascript" src="{{asset('web/js/index.js')}}"></script>
+{{--<script type="text/javascript" src="{{asset('web/js/index.js')}}"></script>--}}
 
 @yield('script')
 
