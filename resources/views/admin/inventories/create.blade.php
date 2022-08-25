@@ -54,14 +54,18 @@
                 <span class="help-block">{{ trans('cruds.inventory.fields.product_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="attribute_value_id">{{ trans('cruds.inventory.fields.attribute_value') }}</label>
-                <select class="form-control select2 {{ $errors->has('attribute_value') ? 'is-invalid' : '' }}" name="attribute_value_id" id="attribute_value_id" required>
-                    @foreach($attribute_values as $id => $entry)
-                        <option value="{{ $id }}" {{ old('attribute_value_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
+                <label class="required" for="attribute_values">{{ trans('cruds.inventory.fields.attribute_value') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('attribute_values') ? 'is-invalid' : '' }}" name="attribute_values[]" id="attribute_values" multiple required>
+                    @foreach($attribute_values as $id => $attribute_value)
+                        <option value="{{ $id }}" {{ in_array($id, old('attribute_values', [])) ? 'selected' : '' }}>{{ $attribute_value }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('attribute_value'))
-                    <span class="text-danger">{{ $errors->first('attribute_value') }}</span>
+                @if($errors->has('attribute_values'))
+                    <span class="text-danger">{{ $errors->first('attribute_values') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.inventory.fields.attribute_value_helper') }}</span>
             </div>

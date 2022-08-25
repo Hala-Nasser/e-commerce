@@ -31,7 +31,7 @@ class AttributeValue extends Model
 
     public function attributeValueInventories()
     {
-        return $this->hasMany(Inventory::class, 'attribute_value_id', 'id');
+        return $this->belongsToMany(Inventory::class);
     }
 
     public function attribute()

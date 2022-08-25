@@ -72,7 +72,9 @@
                                     {{ $inventory->product->title_en ?? '' }}
                                 </td>
                                 <td>
-                                    {{ $inventory->attribute_value->value_en ?? '' }}
+                                    @foreach($inventory->attribute_values as $key => $item)
+                                        <span class="badge badge-info">{{ $item->value_en }}</span>
+                                    @endforeach
                                 </td>
                                 <td>
                                     @can('inventory_show')

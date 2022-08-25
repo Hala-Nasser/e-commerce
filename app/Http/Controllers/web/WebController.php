@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attribute;
 use App\Models\Category;
 use App\Models\ContactUs;
+use App\Models\Order;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\User;
@@ -28,10 +29,10 @@ class WebController extends Controller
         if($request->has('product_id')){
             $products = Product::where('id' ,'=' , $request->input('product_id'))->get();
             return response()->view('web.singleProduct', ['products' => $products , 'users'=> $users]);
-        }               
+        }
         return response()->view('web.index',
         ['products' => $products ,
-        'users'=> $users , 
+        'users'=> $users ,
         'categories'=> $categories ,
         'pages'=> $pages ,
         'attributes'=> $attributes,
@@ -39,17 +40,6 @@ class WebController extends Controller
         'suggproduct' => $suggproduct
         ]);
 
-
-
-
-        
-//        $attributes = Attribute::all();
-//        foreach ($attributes as $attribute){
-//            $attribute->attribute_value = $attribute->with('attributeAttributeValues');
-//            dd($attribute->attribute_value->value_en);
-//    }
-//        dd($attributes[0]->attributeAttributeValues[0]->value_en);
-        // return view('web.index')->with('pages', $pages)->with('categories', $categories)->with('attributes', $attributes);
     }
 
     public function about()
@@ -77,7 +67,7 @@ class WebController extends Controller
         return view('web.contact')->with('contact',$contact);
     }
 
-    public function contactUsStore(Request $request) 
+    public function contactUsStore(Request $request)
     {
        $this->validate($request, [
             'name' => 'required',
@@ -94,7 +84,13 @@ class WebController extends Controller
     {
         $product = Product::find($id);
         return response()->view('web.singleProduct', ['product' => $product]);
+    }
 
+    public function cart()
+    {
+        $products = Order::where('status_id',1)->with('orderOrderDetails')->get();
+        dd($products);
+        return view('web.shooping1');
     }
 
 

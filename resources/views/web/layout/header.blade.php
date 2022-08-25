@@ -38,7 +38,7 @@
                                 <a href="#" class="cd-signin"><i class="fa fa-user-o"></i></a>
                             </li>
                             <li class="top-icon">
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                <a href="{{URL('cart')}}"><i class="fa fa-shopping-cart"></i></a>
                             </li>
 
 

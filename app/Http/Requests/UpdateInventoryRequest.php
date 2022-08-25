@@ -37,9 +37,12 @@ class UpdateInventoryRequest extends FormRequest
                 'required',
                 'integer',
             ],
-            'attribute_value_id' => [
-                'required',
+            'attribute_values.*' => [
                 'integer',
+            ],
+            'attribute_values' => [
+                'required',
+                'array',
             ],
         ];
     }
