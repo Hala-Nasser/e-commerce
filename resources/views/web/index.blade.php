@@ -173,9 +173,9 @@
     </div>
 </div>
 
-@include('web.indexproduct')
+@include('web.product_section')
 
-                  
+
 <div class="clearfix"></div>
 <div class="arrived">
     <div class="container">
