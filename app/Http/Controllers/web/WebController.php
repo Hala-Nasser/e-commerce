@@ -18,6 +18,7 @@ class WebController extends Controller
     {
         $pages = Page::all();
         $categories = Category::all();
+
         $users= User::all();
         $products = Product::orderBy('created_at', 'ASC')->take(4)->get();;
         $attributes = Attribute::with('attributeAttributeValues')->get();
@@ -25,10 +26,10 @@ class WebController extends Controller
         if($request->has('product_id')){
             $products = Product::where('id' ,'=' , $request->input('product_id'))->get();
             return response()->view('web.singleProduct', ['products' => $products , 'users'=> $users]);
-        }
+        }               
         return response()->view('web.index',
         ['products' => $products ,
-        'users'=> $users ,
+        'users'=> $users , 
         'categories'=> $categories ,
         'pages'=> $pages ,
         'attributes'=> $attributes,
@@ -38,7 +39,7 @@ class WebController extends Controller
 
 
 
-
+        
 //        $attributes = Attribute::all();
 //        foreach ($attributes as $attribute){
 //            $attribute->attribute_value = $attribute->with('attributeAttributeValues');
@@ -73,7 +74,7 @@ class WebController extends Controller
         return view('web.contact')->with('contact',$contact);
     }
 
-    public function contactUsStore(Request $request)
+    public function contactUsStore(Request $request) 
     {
        $this->validate($request, [
             'name' => 'required',
