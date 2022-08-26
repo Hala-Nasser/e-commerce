@@ -42,7 +42,7 @@
                         @forelse($attributes as $attribute)
                             <div class="col-md-3 col-sm-3">
                             @if($attribute->attributeAttributeValues != null)
-                                <select name="sort" class="form-control" id="{{$attribute->title_en}}">
+                                <select name="sort" class="form-control" id="{{str_ireplace(' ','_',$attribute->title_en)}}_id">
                                     <option value="0">الكل</option>
                                     @if($attribute->title_en == "color")
                                     @foreach($attribute->attributeAttributeValues as $attribute_value)
@@ -64,216 +64,216 @@
                     </div>
                 </div>
             </div>
-{{--            <div class="clearfix"></div>--}}
-{{--            <div class="row wow fadeInUp">--}}
-{{--                <div class="col-md-12">--}}
-{{--                    <h4 class="categoryName"> Dresses </h4>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p1 ">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="img/shopping-cart%20(1).png">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+            <div class="clearfix"></div>
+            <div class="row wow fadeInUp">
+                <div class="col-md-12">
+                    <h4 class="categoryName"> Dresses </h4>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="products-card">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-cardImg p1 ">
+                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-details ">
+                                    <h4>Lorem ipsum </h4>
+                                    <p> Aenean commodo ligula eget dolor  </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3 class="proPrice"> 100 $ </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="shipping-icon">
+                                                <a href="#">
+                                                    <img src="img/shopping-cart%20(1).png">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-{{--                            </div>--}}
-{{--                        </div>--}}
+                            </div>
+                        </div>
 
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p2">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="img/shopping-cart%20(1).png">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
-
-{{--            </div>--}}
-{{--            <div class="row wow fadeInUp">--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p3 ">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="img/shopping-cart%20(1).png">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="products-card">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-cardImg p2">
+                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-details ">
+                                    <h4>Lorem ipsum </h4>
+                                    <p> Aenean commodo ligula eget dolor  </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3 class="proPrice"> 100 $ </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="shipping-icon">
+                                                <a href="#">
+                                                    <img src="img/shopping-cart%20(1).png">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-{{--                            </div>--}}
-{{--                        </div>--}}
+                            </div>
+                        </div>
 
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p4">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="img/shopping-cart%20(1).png">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="row wow fadeInUp">
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="products-card">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-cardImg p3 ">
+                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-details ">
+                                    <h4>Lorem ipsum </h4>
+                                    <p> Aenean commodo ligula eget dolor  </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3 class="proPrice"> 100 $ </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="shipping-icon">
+                                                <a href="#">
+                                                    <img src="img/shopping-cart%20(1).png">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
-{{--                            </div>--}}
-{{--                        </div>--}}
+                            </div>
+                        </div>
 
-{{--                    </div>--}}
-{{--                </div>--}}
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="products-card">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-cardImg p4">
+                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-details ">
+                                    <h4>Lorem ipsum </h4>
+                                    <p> Aenean commodo ligula eget dolor  </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3 class="proPrice"> 100 $ </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="shipping-icon">
+                                                <a href="#">
+                                                    <img src="img/shopping-cart%20(1).png">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-{{--            </div>--}}
-{{--            <div class="clearfix"></div>--}}
-{{--            <div class="row wow fadeInUp">--}}
-{{--                <div class="col-md-12" style="margin-top: 50px;">--}}
-{{--                    <h4 class="categoryName"> T-SHIRT </h4>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p5">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="img/shopping-cart%20(1).png">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
 
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p6 ">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="img/shopping-cart%20(1).png">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                            </div>
+                        </div>
 
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            <div class="row loading">--}}
-{{--                <a href="#" style="color: #f689a5">--}}
-{{--                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>--}}
-{{--                    <span class="sr-only">Loading...</span>--}}
-{{--                </a>--}}
-{{--            </div>--}}
+                    </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div class="row wow fadeInUp">
+                <div class="col-md-12" style="margin-top: 50px;">
+                    <h4 class="categoryName"> T-SHIRT </h4>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="products-card">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-cardImg p5">
+                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-details ">
+                                    <h4>Lorem ipsum </h4>
+                                    <p> Aenean commodo ligula eget dolor  </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3 class="proPrice"> 100 $ </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="shipping-icon">
+                                                <a href="#">
+                                                    <img src="img/shopping-cart%20(1).png">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                    <div class="products-card">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-cardImg p6 ">
+                                    <a href="#"><i class="fa fa-heart-o"></i></a>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                                <div class="products-details ">
+                                    <h4>Lorem ipsum </h4>
+                                    <p> Aenean commodo ligula eget dolor  </p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h3 class="proPrice"> 100 $ </h3>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="shipping-icon">
+                                                <a href="#">
+                                                    <img src="img/shopping-cart%20(1).png">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row loading">
+                <a href="#" style="color: #f689a5">
+                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                    <span class="sr-only">Loading...</span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -373,7 +373,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
 
         <script type="text/javascript">
-            var ENDPOINT = "127.0.0.1:8000";
+            var ENDPOINT = "{{url('/')}}";
 
             $(document).ready(function() {
                 console.log("ready");
@@ -383,7 +383,14 @@
                 $('select[name="sort"]').on('change', function (e) {
                     console.log("change");
                     e.preventDefault();
+                    var category_id = $("#category").val();
+                    @foreach($attributes as $attribute)
+                    var {{str_ireplace(' ','_',$attribute->title_en)}}_id  = $("#{{str_ireplace(' ','_',$attribute->title_en)}}_id").val();
+                    @endforeach
+                    // var att_id = $("#att_id").val();
+                    // var color =  $("#color_id").val();
                     sort_attributes = []; // reset
+
 
                     // $('select[name="sort"]:checked').each(function()
                     // {
@@ -391,10 +398,11 @@
                         console.log(sort_attributes);
                     // });
                     $.ajax({
-                        url:"/products?attr=" + sort_attributes,
+                        url:"/products?attr=" + sort_attributes+"&category_id="+category_id,
                         type:'get',
                         data : {
-                            "sort_attributes" :sort_attributes,},
+                            "sort_attributes" :sort_attributes,
+                       },
                         beforeSend: function()
                         {
                             $(".ajax-load").show();

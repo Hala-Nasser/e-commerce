@@ -50,12 +50,15 @@ class WebController extends Controller
 
     public function products(Request $request)
     {
+//        dd($request->get('attr'));
         $product_page = Page::find(2);
         $categories = Category::all();
         $attributes = Attribute::with('attributeAttributeValues')->get();
 
         if ($request->ajax()){
 //            dd($request->date);
+            if($request->get('attr'));
+//            $products = Product::where('')
             return response()->json(['success' => $request->date]);
         }
         return view('web.products')->with('product_page', $product_page)->with('categories', $categories)->with('attributes', $attributes);
