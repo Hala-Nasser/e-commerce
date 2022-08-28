@@ -15,7 +15,14 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $this->removeInCart();
+        $this->storeInCart();
+        $this->removeRequestDone();
+        $this->storeRequestDone();
+        $this->removeDelivered();
+        $this->storeDelivered();
+        $this->removeReturned();
+        $this->storeReturned();
     }
 
     public function storeInCart()
