@@ -53,15 +53,24 @@ class WebController extends Controller
 //        dd($request->get('attr'));
         $product_page = Page::find(2);
         $categories = Category::all();
-        $attributes = Attribute::with('attributeAttributeValues')->get();
+        $attributes = Attribute::with('attributeAttributeValues')->limit(2)->get();
+        $products = Product::all();
 
+        dump("products enter");
         if ($request->ajax()){
-//            dd($request->date);
-            if($request->get('attr'));
-//            $products = Product::where('')
-            return response()->json(['success' => $request->date]);
+//            echo "has attr";
+//            if($request->get('sort_attributes')){
+//                echo "has attr";
+//            }
+            dump($request->date);
+            if ($request->has('sort_attributes')){
+                dump("has attr");
+            }
+
+            $view = view('web.product_data', compact('products'))->render();
+            return response()->json(['html' => $view]);
         }
-        return view('web.products')->with('product_page', $product_page)->with('categories', $categories)->with('attributes', $attributes);
+        return view('web.products')->with('product_page', $product_page)->with('categories', $categories)->with('attributes', $attributes)->with('products', $products);
     }
 
     public function contact()
@@ -91,9 +100,9 @@ class WebController extends Controller
 
     public function cart()
     {
-        $products = Order::where('status_id',1)->with('orderOrderDetails')->get();
-        dd($products);
-        return view('web.shooping1');
+        $products = Order::where('status_id',1)->with('orderOrderDetails.invintory.product')->get();
+//        dd($products);
+        return view('web.shooping1')->with('products', $products);
     }
 
 
