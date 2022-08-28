@@ -225,7 +225,7 @@
 <div class="clearfix"></div>
 
 
-@include('web.sug')
+@include('web.suggested')
 
 
 @endsection
