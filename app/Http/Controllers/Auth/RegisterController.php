@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/index';
 
     /**
      * Create a new controller instance.
@@ -49,21 +50,26 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name'     => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8'],
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @return \App\User
      */
-    protected function create(array $data)
+    protected function register (Request $request)
     {
-        return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $this->validator($request->all())->validate();
+
+            $obj = new User();
+            $obj->name = $request['name'];
+            $obj->email = $request['email'];
+            $obj->password = Hash::make($request['password']);
+           if($obj->save()) {
+               User::findOrFail($obj->id)->roles()->sync(2);
+               return redirect()->route('index');
+           }
+
     }
 }

@@ -57,117 +57,62 @@
                             <div class="tab-pane active" role="tabpanel" id="step1">
                                 <div class="row">
 
+                                    @if($order != null)
+                                        @forelse($order->orderOrderDetails as $order_details)
+                                            <p></p>
+                                            <div class="col-md-10 col-md-offset-1">
+                                                <div class="cart-content">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6 ">
+                                                            <div class="pro-details">
+                                                                <div class="row">
+                                                                    <div class="col-md-4 col-sm-4 ">
+                                                                        <img src="{{$order_details->invintory->product->image->getUrl()}}" class="img-responsive">
+                                                                    </div>
+                                                                    <div class="col-md-8 col-sm-8 ">
+                                                                        <h3 class="prod-name">{{$order_details->invintory->product->title}}</h3>
+                                                                        <p>{!! $order_details->invintory->product->description !!}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-3 ">
+                                                            <div class="quantity">
+                                                                <input type="number" min="1" max="9" step="1" value="{{$order_details->quantity}}">
+                                                            </div>
 
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="cart-content">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 ">
-                                                    <div class="pro-details">
-                                                        <div class="row">
-                                                            <div class="col-md-4 col-sm-4 ">
-                                                                <img src="img/tshirt.png" class="img-responsive">
-                                                            </div>
-                                                            <div class="col-md-8 col-sm-8 ">
-                                                                <h3 class="prod-name">Tshirt  </h3>
-                                                                <p> vivamus elementum </p>
-                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 col-sm-3 ">
+                                                            <h3 class="price">
+                                                                {{$order_details->total_price}} $
+                                                            </h3>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 col-sm-3 ">
-                                                    <div class="quantity">
-                                                        <input type="number" min="1" max="9" step="1" value="1">
-                                                    </div>
 
-                                                </div>
-                                                <div class="col-md-3 col-sm-3 ">
-                                                    <h3 class="price">
-                                                        1000 $
-                                                    </h3>
-                                                </div>
                                             </div>
-                                        </div>
-
-                                    </div>
-
-
-
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="cart-content">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="pro-details">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <img src="img/tshirt.png" class="img-responsive">
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <h3 class="prod-name">Tshirt  </h3>
-                                                                <p> vivamus elementum </p>
-                                                            </div>
+                                        @empty
+                                            <h3 style="align-content: center; text-align: center">لا يوجد طلبات</h3>
+                                        @endforelse
+                                            <div class="col-md-10 col-md-offset-2">
+                                                <div class="total">
+                                                    <div class="row">
+                                                        <div class="col-md-6  col-md-offset-6">
+                                                            <h3> Total </h3>
+                                                            <h3> {{$order->total_price}} $ </h3>
                                                         </div>
+
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <div class="quantity">
-                                                        <input type="number" min="1" max="9" step="1" value="1">
-                                                    </div>
+                                    @else
+                                        <h3 style="align-content: center; text-align: center">لا يوجد طلبات</h3>
+                                    @endif
 
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h3 class="price">
-                                                        1000 $
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <div class="col-md-10 col-md-offset-1">
-                                        <div class="cart-content">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="pro-details">
-                                                        <div class="row">
-                                                            <div class="col-md-4">
-                                                                <img src="img/tshirt.png" class="img-responsive">
-                                                            </div>
-                                                            <div class="col-md-8">
-                                                                <h3 class="prod-name">Tshirt  </h3>
-                                                                <p> vivamus elementum </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="quantity">
-                                                        <input type="number" min="1" max="9" step="1" value="1">
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <h3 class="price">
-                                                        1000 $
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-10 col-md-offset-2">
-                                        <div class="total">
-                                            <div class="row">
-                                                <div class="col-md-6  col-md-offset-6">
-                                                    <h3> Total </h3>
-                                                    <h3> 3000 $ </h3>
-                                                </div>
-
-                                            </div>
-                                        </div>
 
                                     </div>
                                     <div class="col-md-6 col-md-offset-5">
-                                        <a href="#" class="next-step pull-right"> Next <img src="img/arrow.png"> </a>
+                                        <a href="#" class="next-step pull-right"> Next <img src="{{asset('web/img/arrow.png')}}"> </a>
 
                                     </div>
 
@@ -222,7 +167,7 @@
 
                                     </div>
                                     <div class="col-md-6 col-md-offset-5">
-                                        <a href="#" class="next-step pull-right"> Next <img src="img/arrow.png"> </a>
+                                        <a href="#" class="next-step pull-right"> Next <img src="{{asset('web/img/arrow.png')}}"> </a>
                                     </div>
                                 </div>
 
@@ -288,7 +233,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-md-offset-5">
-                                        <a href="#" class="next-step pull-right"> Next <img src="img/arrow.png"> </a>
+                                        <a href="#" class="next-step pull-right"> Next <img src="{{asset('web/img/arrow.png')}}"> </a>
                                     </div>
                                 </div>
                             </div>
@@ -296,7 +241,7 @@
                                 <div class="row">
                                     <div class="col-md-8 col-md-offset-2">
                                         <div class="delivery-details forth-step">
-                                            <img src="img/done.png" class="img-responsive">
+                                            <img src="{{asset('web/img/done.png')}}" class="img-responsive">
                                             <h4> You're almost there !  </h4>
                                         </div>
                                     </div>

@@ -12,7 +12,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');
@@ -134,7 +134,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
     }
 });
 
-Route::get('index', 'web\WebController@index');
+Route::get('index', 'web\WebController@index')->name('index');
 Route::get('about', 'web\WebController@about');
 Route::get('products', 'web\WebController@products');
 Route::get('product/singleProduct/{id}', 'web\WebController@indexsingleproduct');
@@ -144,3 +144,4 @@ Route::get('cart', 'web\WebController@cart');
 
 Route::get('contact', 'web\WebController@contact');
 Route::post('contact/store', 'web\WebController@contactUsStore');
+Route::post('favorite', 'web\WebController@setFavorite')->name('favorite');
