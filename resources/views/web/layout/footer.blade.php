@@ -35,6 +35,8 @@
 <script type="text/javascript" src="{{asset('web/js/owl.carousel.js')}}"></script>
 <script type="text/javascript" src="{{asset('web/js/wow.js')}}"></script>
 <script type="text/javascript" src="{{asset('web/js/index.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
 
 @yield('script')
 

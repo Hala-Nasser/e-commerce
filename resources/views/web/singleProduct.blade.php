@@ -74,54 +74,69 @@
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                                     Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
                                 </p>
+                                @forelse($attributes as $attribute)
                                 <div class="row">
                                     <div class="col-md-2">
-                                       <h3 class="ProOption"> Color : </h3>
+                                       <h3 class="ProOption">{{$attribute->title}}: </h3>
                                     </div>
+                                    @if($attribute->title_en == 'color')
                                     <div class="col-md-8">
-                                        <input type="radio" name="color" id="red" value="red" />
-                                        <label for="red"><span class="red"></span></label>
+                                        @forelse($attribute->attributeAttributeValues as $attribute_value)
+                                            <input type="radio" name="color" id="{{$attribute_value->value_en}}" value="{{$attribute_value->value_en}}" />
+                                            <label for="{{$attribute_value->value_en}}"><span class="{{$attribute_value->value_en}}"></span></label>
+                                        @empty
+                                        @endforelse
+                                            @else
+                                                @forelse($attribute->attributeAttributeValues as $attribute_value)
+                                                    <a href="#" class="size1"> {{$attribute_value->value_en}} </a>
+                                                @empty
+                                                @endforelse
+                                            @endif
+{{--                                        <input type="radio" name="color" id="red" value="red" />--}}
+{{--                                        <label for="red"><span class="red"></span></label>--}}
 
-                                        <input type="radio" name="color" id="green" />
-                                        <label for="green"><span class="green"></span></label>
+{{--                                        <input type="radio" name="color" id="green" />--}}
+{{--                                        <label for="green"><span class="green"></span></label>--}}
 
-                                        <input type="radio" name="color" id="yellow" />
-                                        <label for="yellow"><span class="yellow"></span></label>
+{{--                                        <input type="radio" name="color" id="yellow" />--}}
+{{--                                        <label for="yellow"><span class="yellow"></span></label>--}}
 
-                                        <input type="radio" name="color" id="olive" />
-                                        <label for="olive"><span class="olive"></span></label>
+{{--                                        <input type="radio" name="color" id="olive" />--}}
+{{--                                        <label for="olive"><span class="olive"></span></label>--}}
 
-                                        <input type="radio" name="color" id="orange" />
-                                        <label for="orange"><span class="orange"></span></label>
+{{--                                        <input type="radio" name="color" id="orange" />--}}
+{{--                                        <label for="orange"><span class="orange"></span></label>--}}
 
-                                        <input type="radio" name="color" id="teal" />
-                                        <label for="teal"><span class="teal"></span></label>
+{{--                                        <input type="radio" name="color" id="teal" />--}}
+{{--                                        <label for="teal"><span class="teal"></span></label>--}}
 
-                                        <input type="radio" name="color" id="blue" />
-                                        <label for="blue"><span class="teal"></span></label>
+{{--                                        <input type="radio" name="color" id="blue" />--}}
+{{--                                        <label for="blue"><span class="teal"></span></label>--}}
 
-                                        <input type="radio" name="color" id="violet" />
-                                        <label for="violet"><span class="violet"></span></label>
+{{--                                        <input type="radio" name="color" id="violet" />--}}
+{{--                                        <label for="violet"><span class="violet"></span></label>--}}
 
-                                        <input type="radio" name="color" id="purple" />
-                                        <label for="purple"><span class="purple"></span></label>
+{{--                                        <input type="radio" name="color" id="purple" />--}}
+{{--                                        <label for="purple"><span class="purple"></span></label>--}}
 
-                                        <input type="radio" name="color" id="pink" />
-                                        <label for="pink"><span class="pink"></span></label>
+{{--                                        <input type="radio" name="color" id="pink" />--}}
+{{--                                        <label for="pink"><span class="pink"></span></label>--}}
 
                                     </div>
                                 </div>
-                                <div class="row" style="margin-top: 30px">
-                                    <div class="col-md-2">
-                                        <h3 class="ProOption">Size : </h3>
-                                    </div>
-                                    <div class="col-md-2 sizes">
-                                        <a href="#" class="size1"> S </a>
-                                        <a href="#" class="size2"> M </a>
-                                        <a href="#" class="size3"> L </a>
-                                        <a href="#" class="size4 "> XL </a>
-                                    </div>
-                                </div>
+                                @empty
+                                @endforelse
+{{--                                <div class="row" style="margin-top: 30px">--}}
+{{--                                    <div class="col-md-2">--}}
+{{--                                        <h3 class="ProOption">Size : </h3>--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-2 sizes">--}}
+{{--                                        <a href="#" class="size1"> S </a>--}}
+{{--                                        <a href="#" class="size2"> M </a>--}}
+{{--                                        <a href="#" class="size3"> L </a>--}}
+{{--                                        <a href="#" class="size4 "> XL </a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
                                 <div class="row">
                                     <div class="col-md-3 col-sm-3 col-xs-4 quan">
                                         <form>

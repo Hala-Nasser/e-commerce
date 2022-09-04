@@ -18,7 +18,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="section-title wow fadeInUp">
                         <h3>{{$product_page->title}}</h3>
-                        <p style="padding-bottom :0px;">{!! $product_page->description !!}</p>
+                        <p style="padding-bottom :10px;">{!! $product_page->description !!}</p>
                     </div>
                 </div>
 
@@ -70,70 +70,6 @@
                     <h4 class="categoryName"> Dresses </h4>
                 </div>
                 @include('web.product_data')
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p1 ">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="{{asset('web/img/shopping-cart%20(1).png')}}">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                    <div class="products-card">--}}
-{{--                        <div class="row">--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-cardImg p2">--}}
-{{--                                    <a href="#"><i class="fa fa-heart-o"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-6 col-lg-6 col-sm-6 col-xs-12">--}}
-{{--                                <div class="products-details ">--}}
-{{--                                    <h4>Lorem ipsum </h4>--}}
-{{--                                    <p> Aenean commodo ligula eget dolor  </p>--}}
-{{--                                    <div class="row">--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <h3 class="proPrice"> 100 $ </h3>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="col-md-6">--}}
-{{--                                            <div class="shipping-icon">--}}
-{{--                                                <a href="#">--}}
-{{--                                                    <img src="{{asset('web/img/shopping-cart%20(1).png')}}">--}}
-{{--                                                </a>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                            </div>--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
 
             </div>
 {{--            <div class="row wow fadeInUp">--}}
@@ -269,7 +205,7 @@
 {{--                    </div>--}}
 {{--                </div>--}}
 {{--            </div>--}}
-            <div class="row loading" id="ajax-load">
+            <div class="row loading" id="ajax-load" style="display: none">
                 <a href="#" style="color: #f689a5">
                     <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                     <span class="sr-only">Loading...</span>
@@ -376,34 +312,33 @@
         <script type="text/javascript">
             {{--var ENDPOINT = "{{url('/')}}";--}}
 
+            const load = document.getElementById('ajax-load');
             $(document).ready(function() {
                 console.log("ready");
                 var sort_attributes = [];
 
                 // Listen for 'change' event, so this triggers when the user clicks on the checkboxes labels
                 sort_attributes = [];
-                console.log("array before change" + sort_attributes);
                 $('select[name="sort"]').on('change', function (e) {
-                    console.log("change");
                     e.preventDefault();
                     sort_attributes = [];
                     var category_id = $("#category").val();
+
                     @foreach($attributes as $attribute)
                     var {{str_ireplace(' ','_',$attribute->title_en)}}_id  = $("#{{str_ireplace(' ','_',$attribute->title_en)}}_id").val();
                     sort_attributes.push({{str_ireplace(' ','_',$attribute->title_en)}}_id );
-                    console.log("array after change: " + sort_attributes);
                     @endforeach
-                    var attr_data = JSON.stringify(sort_attributes);
-                    console.log("json: "+ attr_data);
+
                     $.ajax({
-                        url:"products?attr=" + sort_attributes+"&category_id="+category_id,
+                        url:"products?f_attr=" + sort_attributes[0]+ "&s_attr="+sort_attributes[1] + "&category_id="+category_id,
                         type:'get',
                         data : {
                             "sort_attributes" :sort_attributes,
                        },
                         beforeSend: function()
                         {
-                            $(".ajax-load").show();
+                            // $(".ajax-load").show();
+                            load.style.display = 'block';
                         }
                     })
 
@@ -416,7 +351,8 @@
                                 return;
                             }
                             console.log("else");
-                            $('.ajax-load').hide();
+                            // $('.ajax-load').hide();
+                            load.style.display = 'none';
                             $("#post-data").html("");
                             $("#post-data").append(data.html);
                         })
