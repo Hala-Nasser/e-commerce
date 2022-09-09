@@ -41,43 +41,22 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $input = $request->all();
-
-        $validator =$this->validate($request, [
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if ($validator->fails()){
-            return response()->json($validator->errors(),422);
-        } else {
-            //validations are passed try login using laravel auth attemp
-            if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
+        if ($request->ajax()) {
+            if (auth()->attempt(['email' => $request->get('email'), 'password' => $request->get('password')])) {
                 if (auth()->user()->getIsAdminAttribute()) {
-                    return response()->json(["status"=>true,"redirect_location"=>url("/")]);
-
-                }else{
-                    return response()->json(["status"=>true,"redirect_location"=>url("/index")]);
-
+                    return response()->json(["success" => true, "role" => 'admin']);
+                } else {
+                    return response()->json(["success" => true, "role" => 'user']);
                 }
-
             } else {
-                return response()->json([["Invalid credentials"]],422);
-
+                return response()->json(["success" => false, "message" => 'خطأ في البريد الالكتروني او كلمة المرور']);
             }
         }
-
-
-//        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
-//        {
-//            if (auth()->user()->getIsAdminAttribute()) {
-//                return redirect()->route('admin.home');
-//            }else{
-//                return redirect()->route('index');
-//            }
-//        }else{
-//            return redirect()->back()->withErrors($validate);
-//        }
 
     }
 }

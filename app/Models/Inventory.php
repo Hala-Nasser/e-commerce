@@ -31,6 +31,8 @@ class Inventory extends Model
         'deleted_at',
     ];
 
+    protected $with = ['attribute_values'];
+
     public function invintoryOrderDetails()
     {
         return $this->hasMany(OrderDetail::class, 'invintory_id', 'id');

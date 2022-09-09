@@ -4,6 +4,7 @@ namespace App\Http\Controllers\web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\ContactUs;
 use App\Models\Order;
@@ -24,9 +25,9 @@ class WebController extends Controller
 
         $users = User::all();
         $products = Product::orderBy('created_at', 'ASC')->take(4)->get();;
-        $attributes = Attribute::with('attributeAttributeValues')->get();
+        $attributes = Attribute::with('attributeAttributeValues')->limit(2)->get();
         $latestproducts = Product::orderBy('created_at', 'ASC')->take(9)->get();
-        $suggproduct = Product::orderBy('created_at', 'ASC')->take(3)->get();
+//        $suggproduct = Product::orderBy('created_at', 'ASC')->take(3)->get();
 
         if ($request->has('product_id')) {
             $products = Product::where('id', '=', $request->input('product_id'))->get();
@@ -39,7 +40,7 @@ class WebController extends Controller
                 'pages' => $pages,
                 'attributes' => $attributes,
                 'latestproducts' => $latestproducts,
-                'suggproduct' => $suggproduct
+//                'suggproduct' => $suggproduct
             ]);
 
     }
@@ -70,7 +71,6 @@ class WebController extends Controller
                 if ($request->get('f_attr') != 0) {
                     $id = $request->get('f_attr');
                     $inv = $products->whereHas('productInventories', function ($query) use ($id) {
-//                        $attr_value = $query->
                         $query->whereHas('attribute_values', function ($query) use ($id) {
                             return $query->where('id', $id);
                         });
@@ -117,50 +117,34 @@ class WebController extends Controller
 
     }
 
-    public function indexsingleproduct($id)
+    public function singleProduct($id)
     {
-        $product = Product::find($id)->with('productInventories');
+        $product = Product::with('productInventories')->find($id);
 
-        $attributes = Attribute::with('attributeAttributeValues');
+        $attres = Attribute::with('attributeAttributeValues.attributeValueInventories')->get();
 
-//        $products = $product->whereHas('productInventories', function ($query) {
-//            $query->whereHas('attribute_values', function ($query){
-//                $query->whereHas('attribute', function ($query){
-//                    return $query;
-//                });
-//            });
-//        });
-////        dd($invs->get());
-//        $products = $products->get();
-//        $attribute_values = [];
-//        $attributes = [];
-//
-//        $att_v = AttributeValue::with('attribute')->get();
-//
-//        foreach ($products[0]->productInventories as $inv){
-//            foreach ($inv->attribute_values as $attribute_value){
-//                $attribute_values[] = $attribute_value->id;
-//                foreach ($attribute_value->attribute as $attribute){
-//                    $attributes[] = $attribute->title;
-//                }
-//            }
-//        }
-//        dd($attributes);
-//
-//
-//        $array = array_unique($attribute_values);
-//        dd($array);
+        $values = [];
+        $attrs = [];
 
-        $attr = $attributes->whereHas('attributeAttributeValues', function ($query) use ($id) {
-            $query->whereHas('attributeValueInventories', function ($query) use ($id) {
-                $query->whereHas('product', function ($query) use ($id) {
-                    return $query->where('id', $id);
-                });
-            });
-        });
+        foreach ($attres as $att) {
+            $attValues = $att->attributeAttributeValues;
+            foreach ($attValues as $value) {
+                foreach ($value->attributeValueInventories as $attributeValueInventory){
+                    if ($attributeValueInventory->product_id == $id) {
+                        $values[] = $value;
+                        $attrs[] = $att;
+                    }
+                }
+            }
+            $att->setAttribute('values', array_unique($values));
+            $values = [];
+        }
+        $attrs = array_unique($attrs);
 
-        dd($attr->get());
-        return response()->view('web.singleProduct', ['product' => $product, 'attributes' => $attr->get()]);
+        $pages = Page::all();
+        $latestproducts = Product::orderBy('created_at', 'ASC')->take(9)->get();
+
+        return view('web.singleProduct', ['product' => $product, 'attrs' => $attrs, 'pages' => $pages, 'latestproducts'=> $latestproducts]);
     }
 
     public function cart()
@@ -178,15 +162,15 @@ class WebController extends Controller
     {
         $product_id = $request['product_id'];
         if (auth()->user()) {
-            $favorite_product = UserProductFavorite::where('product_id',$product_id)->where('user_id',auth()->id())->withTrashed()->first();
-            if ($favorite_product){
-                if ($favorite_product->deleted_at != null){
+            $favorite_product = UserProductFavorite::where('product_id', $product_id)->where('user_id', auth()->id())->withTrashed()->first();
+            if ($favorite_product) {
+                if ($favorite_product->deleted_at != null) {
                     $favorite_product->restore();
-                }else{
+                } else {
                     $favorite_product->delete();
                 }
 
-            }else{
+            } else {
                 $product = new UserProductFavorite();
                 $product->product_id = $product_id;
                 $product->user_id = auth()->id();
@@ -194,7 +178,7 @@ class WebController extends Controller
                 $product->save();
             }
             return redirect()->back();
-        }else{
+        } else {
             return redirect('/index');
         }
 
