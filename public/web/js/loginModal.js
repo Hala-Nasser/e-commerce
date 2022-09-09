@@ -105,27 +105,137 @@ jQuery(document).ready(function ($) {
 
     //IE9 placeholder fallback
     //credits http://www.hagenburger.net/BLOG/HTML5-Input-Placeholder-Fix-With-jQuery.html
-    if (!Modernizr.input.placeholder) {
-        $('[placeholder]').focus(function () {
-            var input = $(this);
-            if (input.val() == input.attr('placeholder')) {
-                input.val('');
+    // if (!Modernizr.input.placeholder) {
+    //     $('[placeholder]').focus(function () {
+    //         var input = $(this);
+    //         if (input.val() == input.attr('placeholder')) {
+    //             input.val('');
+    //         }
+    //     }).blur(function () {
+    //         var input = $(this);
+    //         if (input.val() == '' || input.val() == input.attr('placeholder')) {
+    //             input.val(input.attr('placeholder'));
+    //         }
+    //     }).blur();
+    // $('[placeholder]').parents('form').submit(function() {
+    //   	$(this).find('[placeholder]').each(function() {
+    // 		var input = $(this);
+    // 		if (input.val() == input.attr('placeholder')) {
+    // 	 		input.val('');
+    // 		}
+    //   	})
+    // });
+    // }
+
+
+    ////////LOGIN////////
+    $('#SubmitLoginForm').on('submit', function (e) {
+        e.preventDefault();
+
+        let email = $('#signinEmail').val();
+        let password = $('#signinPassword').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }).blur(function () {
-            var input = $(this);
-            if (input.val() == '' || input.val() == input.attr('placeholder')) {
-                input.val(input.attr('placeholder'));
+        });
+
+        $.ajax({
+            url: "/login",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                email: email,
+                password: password,
+            },
+            success: function (response) {
+                $('#successMsg').show();
+                if (response.success) {
+                    document.getElementById('signinEmail').value = '';
+                    document.getElementById('signinPassword').value = '';
+                    if (response.role === "admin") {
+                        top.location.href = "/";
+                    } else if (response.role === "user") {
+                        top.location.href = "/index";
+                    }
+                } else {
+                    $('#responseErrorMsg').text(response.message);
+                }
+
+            },
+            error: function (response) {
+                $('#emailErrorMsg').text(response.responseJSON.errors.email);
+                $('#passwordErrorMsg').text(response.responseJSON.errors.password);
+            },
+        });
+    });
+
+
+    ///////////REGISTER//////////////
+
+    var the_terms = $("#accept-terms");
+
+    the_terms.click(function() {
+        if ($(this).is(":checked")) {
+            $("#submitBtn").removeAttr("disabled");
+        } else {
+            $("#submitBtn").attr("disabled", "disabled");
+        }
+    });
+
+
+    $('#SubmitRegisterForm').on('submit', function (e) {
+        e.preventDefault();
+
+        let name = $('#signupUsername').val();
+        let email = $('#signupEmail').val();
+        let password = $('#signupPassword').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        }).blur();
-        // $('[placeholder]').parents('form').submit(function() {
-        //   	$(this).find('[placeholder]').each(function() {
-        // 		var input = $(this);
-        // 		if (input.val() == input.attr('placeholder')) {
-        // 	 		input.val('');
-        // 		}
-        //   	})
-        // });
-    }
+        });
+
+        $.ajax({
+            url: "/register",
+            type: "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: {
+                name: name,
+                email: email,
+                password: password,
+            },
+            success: function (response) {
+                $('#successMsg').show();
+                if (response.success) {
+                    document.getElementById('signupUsername').value = '';
+                    document.getElementById('signupEmail').value = '';
+                    document.getElementById('signupPassword').value = '';
+                    // if (response.role === "admin") {
+                    //     top.location.href = "/";
+                    // } else if (response.role === "user") {
+                        top.location.href = "/index";
+                    // }
+                } else {
+                    $('#signupResponseErrorMsg').text(response.message);
+                }
+
+            },
+            error: function (response) {
+                $('#usernameErrorMsg').text(response.responseJSON.errors.name);
+                $('#signupEmailErrorMsg').text(response.responseJSON.errors.email);
+                $('#signupPasswordErrorMsg').text(response.responseJSON.errors.password);
+            },
+        });
+    });
 
 });
 
@@ -147,42 +257,38 @@ jQuery.fn.putCursorAtEnd = function () {
     });
 };
 
+// $('#SubmitForm').on('submit',function(e){
+//     e.preventDefault();
+//
+//     let email = $('#signinEmail').val();
+//     let password = $('#signinPassword').val();
+//
+//     $.ajaxSetup({
+//         headers: {
+//             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+//         }
+//     });
+//
+//     $.ajax({
+//         url: "/login",
+//         type:"POST",
+//         data:{
+//             email:email,
+//             password:password,
+//         },
+//         success:function(response){
+//             $('#successMsg').show();
+//             console.log(response);
+//             document.getElementById('signinEmail').value = '';
+//             document.getElementById('signinPassword').value = '';
+//         },
+//         error: function(response) {
+//             $('#emailErrorMsg').text(response.responseJSON.errors.email);
+//             $('#passwordErrorMsg').text(response.responseJSON.errors.password);
+//         },
+//     });
+// });
 
-//login and register request
 
-$('#SubmitLoginForm').on('submit', function (e) {
-    e.preventDefault();
 
-    let email = $('#signin_email').val();
-    let password = $('#signin_password').val();
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $.ajax({
-        url: "/login",
-        type: "POST",
-        data: {
-            "_token": "{{ csrf_token() }}",
-            email: email,
-            password: password,
-        },
-        success: function (response) {
-            window.location = data.redirect_location;
-            console.log(response);
-        },
-        error: function (response) {
-            var erroJson = JSON.parse(response.responseText);
-            for (var err in erroJson) {
-                for (var errstr of erroJson[err])
-                    $("#errors-list").append("<div class='alert alert-danger'>" + errstr + "</div>");
-            }
-        },
-        failure: function (errMsg) {
-            console.log(errMsg);
-        }
-    });
-});

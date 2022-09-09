@@ -14,67 +14,37 @@
             <div class="sortSection">
                 <div class="col-md-9 col-sm-9 col-xs-9 col-md-offset-1 ">
                     <div class="col-md-3 col-md-offset-3 col-sm-3">
-                        <ul class="nav nav-pills left">
-                            <li class="dropdown active span8">
-                                <a class="dropdown-toggle" id="inp_impact" data-toggle="dropdown">
-                                    <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title"  class="dropdown_title">All Product </span><span class="caret"></span></a>
-                                <ul ID="divNewNotifications" class="dropdown-menu">
-                                    @forelse($categories as $category)
-                                        <li><a>{{$category->title}}</a></li>
-                                    @empty
-                                        <li><a>One</a></li>
-                                        <li><a>Two</a></li>
-                                        <li><a>Three</a></li>
-                                    @endforelse
-                                </ul>
-                            </li>
-                        </ul>
+                        <select name="sort" class="form-control" id="category">
+                            <option value="0">الكل</option>
+                            @forelse($categories as $category)
+                                <option value="{{ $category->id }}">{{$category->title}}</option>
+                            @empty
+                            @endforelse
+
+                        </select>
                     </div>
+
+
                     @forelse($attributes as $attribute)
                         <div class="col-md-3 col-sm-3">
-                            <ul class="nav nav-pills left">
-                                <li class="dropdown active span8">
-                                    <a class="dropdown-toggle" id="inp_impact2" data-toggle="dropdown">
-                                        <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title2"
-                                                                                                 class="dropdown_title">{{$attribute->title}}</span><span class="caret"></span></a>
-                                    <ul ID="divNewNotifications2" class="dropdown-menu sizes">
-                                        @forelse($attribute->attributeAttributeValues as $attribute_value)
-                                            @if($attribute->title_en == "color")
-                                                <li><a> {{$attribute_value->value}} <label class="color1"> </label></a></li>
-                                            @else
-                                                <li><a><span class="small "> {{$attribute_value->value}} </span> Small </a></li>
-                                            @endif
-                                        @empty
-                                            <li><a><span class="small "> S </span> Small </a></li>
-                                            <li><a><span class="medium "> M </span> Medium </a></li>
-                                            <li><a><span class="large "> L </span> Large </a></li>
-                                            <li><a><span class="xlarge "> XL </span> XLarge </a></li>
-                                            <li><a><span class="xxlarge "> XXL </span> XXLarge </a></li>
-                                            <li><a><span class="xxxlarge "> XXXL </span> XXXLarge </a></li>
-                                        @endforelse
-
-                                    </ul>
-                                </li>
-                            </ul>
+                            @if($attribute->attributeAttributeValues != null)
+                                <select name="sort" class="form-control" id="{{str_ireplace(' ','_',$attribute->title_en)}}_id">
+                                    <option value="0">الكل</option>
+                                    @if($attribute->title_en == "color")
+                                        @foreach($attribute->attributeAttributeValues as $attribute_value)
+                                            <option id="{{$attribute->id}}" style="color: {{$attribute_value->value_en}}" value="{{$attribute_value->id}}">
+                                                {{$attribute_value->value}}
+                                            </option>
+                                        @endforeach
+                                    @else
+                                        @foreach($attribute->attributeAttributeValues as $attribute_value)
+                                            <option value="{{$attribute_value->id}}">{{$attribute_value->value}} </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            @endif
                         </div>
                     @empty
-                        <div class="col-md-3 col-sm-3">
-                            <ul class="nav nav-pills left">
-                                <li class="dropdown active span8">
-                                    <a class="dropdown-toggle" id="inp_impact2" data-toggle="dropdown">
-                                        <i class="icon icon-envelope icon-white"></i>&nbsp;<span id="dropdown_title2"
-                                                                                                 class="dropdown_title">Sizes </span><span class="caret"></span></a>
-                                    <ul ID="divNewNotifications2" class="dropdown-menu sizes">
-                                        <li><a><span class="small "> S </span> Small </a></li>
-                                        <li><a><span class="medium "> M </span> Medium </a></li>
-                                        <li><a><span class="large "> L </span> Large </a></li>
-                                        <li><a><span class="xlarge "> XL </span> XLarge </a></li>
-                                        <li><a><span class="xxlarge "> XXL </span> XXLarge </a></li>
-                                        <li><a><span class="xxxlarge "> XXXL </span> XXXLarge </a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
                     @endforelse
 
                 </div>

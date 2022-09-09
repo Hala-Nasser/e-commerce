@@ -3,6 +3,7 @@
 <head>
     <title>Hebtna</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+{{--    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>--}}
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{asset('web/css/font-awesome.min.css')}}"/>
@@ -67,38 +68,30 @@
                             </ul>
 
                             <div id="cd-login"> <!-- log in form -->
-                                <form class="cd-form" role="form" id="SubmitLoginForm">
+                                <form id="SubmitLoginForm" class="cd-form">
                                     @csrf
                                     <h3 class="login-title"> LOG IN</h3>
                                     <p class="loginDesc"> Please fill in your basic info </p>
                                     <p class="fieldset">
-
-                                        <label class="image-replace cd-email" for="signin-email">E-mail</label>
-                                        <input class="full-width has-padding has-border" name="email" id="signin-email"
+                                        <label class="image-replace cd-email" for="signinEmail">E-mail</label>
+                                        <input class="full-width has-padding has-border" name="email" id="signinEmail"
                                                type="email" placeholder="E-mail">
-                                        @if($errors->has('email'))
-                                            <span class="cd-error-message">{{ $errors->first('email') }}</span>
-                                        @endif
+                                        <span class="text-danger" id="emailErrorMsg"></span>
                                     </p>
 
                                     <p class="fieldset">
-                                        <label class="image-replace cd-password" for="signin-password">Password</label>
+                                        <label class="image-replace cd-password" for="signinPassword">Password</label>
                                         <input class="full-width has-padding has-border" name="password"
-                                               id="signin-password" type="password" placeholder="Password">
+                                               id="signinPassword" type="password" placeholder="Password">
                                         <a href="#0" class="hide-password">Hide</a>
-                                        @if($errors->has('password'))
-                                            <span class="cd-error-message">{{ $errors->first('password') }}</span>
-                                        @endif
+                                        <span class="text-danger" id="passwordErrorMsg"></span>
                                     </p>
 
                                     <p class="fieldset">
-                                        <input type="checkbox" id="remember-me" checked>
-                                        <label for="remember-me">Remember me</label>
+                                    <span class="text-danger" id="responseErrorMsg"></span>
                                     </p>
 
-                                    <p class="fieldset">
-                                        <input class="" type="submit" value="LOG IN ">
-                                    </p>
+                                    <button type="submit" class="btn btn-primary">login</button>
                                 </form>
 
                                 @if(Route::has('password.request'))
@@ -109,36 +102,30 @@
                             </div> <!-- cd-login -->
 
                             <div id="cd-signup"> <!-- sign up form -->
-                                <form class="cd-form" method="POST" action="{{ route('register') }}">
+                                <form class="cd-form" id="SubmitRegisterForm">
                                     @csrf
                                     <h3 class="login-title">SIGN UP </h3>
                                     <p class="loginDesc"> Create your account </p>
                                     <p class="fieldset">
                                         <label class="image-replace cd-username" for="signup-username">Username</label>
-                                        <input class="full-width has-padding has-border" id="signup-username"
+                                        <input class="full-width has-padding has-border" id="signupUsername"
                                                type="text" placeholder="Username" name="name">
-                                        @error('name')
-                                        <span class="cd-error-message">{{ $message }}</span>
-                                        @enderror
+                                        <span class="text-danger" id="usernameErrorMsg"></span>
                                     </p>
 
                                     <p class="fieldset">
                                         <label class="image-replace cd-email" for="signup-email">E-mail</label>
-                                        <input class="full-width has-padding has-border" id="signup-email" type="email"
+                                        <input class="full-width has-padding has-border" id="signupEmail" type="email"
                                                placeholder="E-mail" name="email">
-                                        @error('email')
-                                        <span class="cd-error-message">{{ $message }}</span>
-                                        @enderror
+                                        <span class="text-danger" id="signupEmailErrorMsg"></span>
                                     </p>
 
                                     <p class="fieldset">
                                         <label class="image-replace cd-password" for="signup-password">Password</label>
-                                        <input class="full-width has-padding has-border" id="signup-password"
-                                               type="text" placeholder="Password" name="password">
+                                        <input class="full-width has-padding has-border" id="signupPassword"
+                                               type="password" placeholder="Password" name="password">
                                         <a href="#0" class="hide-password">Hide</a>
-                                        @error('password')
-                                        <span class="cd-error-message">{{ $message }}</span>
-                                        @enderror
+                                        <span class="text-danger" id="signupPasswordErrorMsg"></span>
                                     </p>
 
                                     <p class="fieldset">
@@ -147,7 +134,11 @@
                                     </p>
 
                                     <p class="fieldset">
-                                        <input class="has-padding" type="submit" value="SIGN UP">
+                                        <span class="text-danger" id="signupResponseErrorMsg"></span>
+                                    </p>
+
+                                    <p class="fieldset">
+                                        <input class="has-padding" type="submit" value="SIGN UP" id="submitBtn" disabled="disabled">
                                     </p>
                                 </form>
 

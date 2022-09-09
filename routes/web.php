@@ -137,7 +137,7 @@ Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 
 Route::get('index', 'web\WebController@index')->name('index');
 Route::get('about', 'web\WebController@about');
 Route::get('products', 'web\WebController@products');
-Route::get('product/singleProduct/{id}', 'web\WebController@indexsingleproduct');
+Route::get('product/singleProduct/{id}', 'web\WebController@singleProduct');
 
 // Route::get('shopping', 'web\WebController@products');
 Route::get('cart', 'web\WebController@cart');
