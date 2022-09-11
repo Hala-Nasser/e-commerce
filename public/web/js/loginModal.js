@@ -155,19 +155,22 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 $('#successMsg').show();
                 if (response.success) {
+                    console.log(response);
                     document.getElementById('signinEmail').value = '';
                     document.getElementById('signinPassword').value = '';
                     if (response.role === "admin") {
-                        top.location.href = "/";
+                        top.location.href = "/admin";
                     } else if (response.role === "user") {
                         top.location.href = "/index";
                     }
                 } else {
+                    console.log(response.message);
                     $('#responseErrorMsg').text(response.message);
                 }
 
             },
             error: function (response) {
+                console.log(response);
                 $('#emailErrorMsg').text(response.responseJSON.errors.email);
                 $('#passwordErrorMsg').text(response.responseJSON.errors.password);
             },
