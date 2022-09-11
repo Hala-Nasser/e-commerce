@@ -63,6 +63,7 @@
                                     <form id="fav-form" action="{{ route('favorite') }}" method="POST" class="d-none">
                                         @csrf
                                         <input type="hidden" name="product_id" value="{{$product->id}}">
+                                        @if($product->productUserProductFavorites )
                                         <button><i class="fa fa-heart-o"></i></button>
                                     </form>
                                 </div>
@@ -71,6 +72,7 @@
                                 <div class="products-details ">
                                     <a href="{{ URL('product/singleProduct/' . $product->id) }}">
                                         <h4>{{$product->title}} </h4> </a>
+                                    <P>{{ $product->productUserProductFavorites }}</P>
                                     <p> {!! $product->description !!}  </p>
                                     <div class="shipping-icon">
                                         <a href="{{ URL('shopping') }}">

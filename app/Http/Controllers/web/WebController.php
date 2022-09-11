@@ -58,6 +58,10 @@ class WebController extends Controller
         $attributes = Attribute::with('attributeAttributeValues')->limit(2)->get();
         $products = Product::with('productInventories');
 
+//        foreach ($products as $product){
+//            foreach ()
+//        }
+
 
         if ($request->ajax()) {
 
@@ -120,23 +124,22 @@ class WebController extends Controller
     public function singleProduct($id)
     {
         $product = Product::with('productInventories')->find($id);
-
-        $attres = Attribute::with('attributeAttributeValues.attributeValueInventories')->get();
+        $attributes = Attribute::with('attributeAttributeValues.attributeValueInventories')->get();
 
         $values = [];
         $attrs = [];
 
-        foreach ($attres as $att) {
-            $attValues = $att->attributeAttributeValues;
+        foreach ($attributes as $attribute) {
+            $attValues = $attribute->attributeAttributeValues;
             foreach ($attValues as $value) {
                 foreach ($value->attributeValueInventories as $attributeValueInventory){
                     if ($attributeValueInventory->product_id == $id) {
                         $values[] = $value;
-                        $attrs[] = $att;
+                        $attrs[] = $attribute;
                     }
                 }
             }
-            $att->setAttribute('values', array_unique($values));
+            $attribute->setAttribute('values', array_unique($values));
             $values = [];
         }
         $attrs = array_unique($attrs);

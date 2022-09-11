@@ -20,7 +20,7 @@
                     </p>
                 @endif
 
-                <form action="{{ route('login') }}" method="POST" id="SubmitForm">
+                <form id="SubmitLoginForm">
                     @csrf
 
                     <div class="form-group">
